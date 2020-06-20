@@ -10,16 +10,28 @@
         android:id="@+id/openImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="158dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="119dp"
         android:text="Generate text from image"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="158dp" />
+        app:layout_constraintBottom_toTopOf="@+id/writeText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/writeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginStart="96dp"
+        android:layout_marginTop="119dp"
+        android:layout_marginEnd="97dp"
+        android:layout_marginBottom="358dp"
         android:text="Generate image from text"
-        tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="325dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/openImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
