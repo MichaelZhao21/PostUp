@@ -10,6 +10,7 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
@@ -44,9 +45,14 @@ public class NewPostActivity extends AppCompatActivity {
                     Bitmap image = getBitmapFromUri(uri);
                     ImageView iv = (ImageView) findViewById(R.id.pictureDisplay);
                     iv.setImageBitmap(image);
+                    moveToCallback();
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
+            }
+            else {
+                TextView error = (TextView) findViewById(R.id.feedbackInfo);
+                error.setText("Could not open image");
             }
         }
     }
@@ -58,5 +64,10 @@ public class NewPostActivity extends AppCompatActivity {
         Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
         parcelFileDescriptor.close();
         return image;
+    }
+
+    protected void moveToCallback() {
+        Intent intent = new Intent(this, NewPostCallbackActivity.class);
+
     }
 }
