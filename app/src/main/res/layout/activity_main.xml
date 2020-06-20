@@ -7,18 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
-        android:id="@+id/Title"
-        android:layout_width="249dp"
-        android:layout_height="214dp"
-        android:layout_marginTop="60dp"
-        android:ems="0"
-        android:text=" Post Up!"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
     <Button
         android:id="@+id/DraftsButton"
         android:layout_width="113dp"
@@ -44,7 +32,7 @@
         android:layout_marginEnd="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="381dp" />
+        app:layout_constraintGuide_begin="461dp" />
 
     <Button
         android:id="@+id/HistoryButton"
@@ -65,19 +53,17 @@
         android:text="NEW"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="@+id/Title"
+        app:layout_constraintStart_toStartOf="@+id/Title"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <ImageButton
         android:id="@+id/SettingsButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="204dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Title"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/Title"
+        android:layout_marginTop="208dp"
+        app:layout_constraintEnd_toEndOf="@+id/NewButton"
+        app:layout_constraintStart_toStartOf="@+id/NewButton"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -96,5 +82,18 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="698dp" />
+        app:layout_constraintGuide_begin="830dp" />
+
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="249dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="220dp"
+        android:text="Post Up"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintHorizontal_bias="0.55"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
