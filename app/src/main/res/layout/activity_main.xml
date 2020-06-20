@@ -10,11 +10,14 @@
     tools:context=".MainActivity">
 
     <Button
+        android:background="@drawable/roundedbutton"
         android:id="@+id/DraftsButton"
         android:layout_width="113dp"
         android:layout_height="68dp"
         android:layout_marginTop="20dp"
         android:text="Drafts"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-condensed-light"
         app:layout_constraintStart_toStartOf="@+id/NewButton"
         app:layout_constraintTop_toBottomOf="@+id/NewButton" />
 
@@ -25,23 +28,29 @@
         android:layout_height="68dp"
         android:layout_marginTop="20dp"
         android:text="History"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-condensed-light"
         app:layout_constraintBottom_toBottomOf="@+id/DraftsButton"
         app:layout_constraintEnd_toEndOf="@+id/NewButton"
         app:layout_constraintTop_toBottomOf="@+id/NewButton"
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
+        android:background="@drawable/roundedbutton"
         android:id="@+id/NewButton"
         android:layout_width="251dp"
         android:layout_height="74dp"
         android:layout_marginTop="20dp"
         android:text="NEW"
+        android:textColor="#ffffff"
+        android:fontFamily="sans-serif-condensed-light"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="@+id/Title"
         app:layout_constraintStart_toStartOf="@+id/Title"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <ImageButton
+        android:background="@drawable/roundedbutton"
         android:id="@+id/SettingsButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -52,13 +61,14 @@
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
     <TextView
-        android:textAlignment="center"
-        android:gravity="center"
         android:id="@+id/Title"
         android:layout_width="249dp"
         android:layout_height="214dp"
         android:layout_marginTop="128dp"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
         android:text="Post Up"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         android:textColor="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
