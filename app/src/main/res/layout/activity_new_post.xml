@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Generate text from image"
         tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="249dp" />
+        tools:layout_editor_absoluteY="158dp" />
 
     <Button
         android:id="@+id/writeText"
@@ -20,7 +20,7 @@
         android:layout_height="wrap_content"
         android:text="Generate image from text"
         tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="401dp" />
+        tools:layout_editor_absoluteY="325dp" />
 
     <TextView
         android:id="@+id/feedbackInfo"
