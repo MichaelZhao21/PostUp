@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 
 enum MenuOption {NEW, HISTORY, DRAFTS, SETTINGS}
 
@@ -22,6 +23,30 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 newActivity(MenuOption.NEW);
+            }
+        });
+
+        ImageButton settingsButton = (ImageButton) findViewById(R.id.SettingsButton);
+        settingsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newActivity(MenuOption.SETTINGS);
+            }
+        });
+
+        Button historyButton = (Button) findViewById(R.id.HistoryButton);
+        historyButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newActivity(MenuOption.HISTORY);
+            }
+        });
+
+        Button draftsButton = (Button) findViewById(R.id.DraftsButton);
+        draftsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                newActivity(MenuOption.DRAFTS);
             }
         });
 
