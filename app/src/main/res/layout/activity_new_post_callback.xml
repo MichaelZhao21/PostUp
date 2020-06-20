@@ -23,7 +23,7 @@
         tools:layout_editor_absoluteY="30dp" />
 
     <EditText
-        android:id="@+id/editTextTextMultiLine"
+        android:id="@+id/textDisplay"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
         android:ems="10"
