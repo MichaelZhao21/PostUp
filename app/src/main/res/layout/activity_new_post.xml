@@ -6,4 +6,11 @@
     android:layout_height="match_parent"
     tools:context=".NewPostActivity">
 
+    <ImageView
+        android:id="@+id/pictureDisplay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:layout_editor_absoluteX="142dp"
+        tools:layout_editor_absoluteY="266dp"
+        tools:srcCompat="@tools:sample/avatars" />
 </androidx.constraintlayout.widget.ConstraintLayout>
