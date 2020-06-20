@@ -68,6 +68,6 @@ public class NewPostActivity extends AppCompatActivity {
 
     protected void moveToCallback() {
         Intent intent = new Intent(this, NewPostCallbackActivity.class);
-
+        startActivity(intent);
     }
 }
