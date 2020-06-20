@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 
-enum MenuOption {NEW, HISTORY, DRAFTS, SETTINGS}
+enum MenuOption {NEW, SAVED, SETTINGS}
 
 public class MainActivity extends AppCompatActivity {
     //gurt wuz here
@@ -34,19 +34,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        Button historyButton = (Button) findViewById(R.id.HistoryButton);
-        historyButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                newActivity(MenuOption.HISTORY);
-            }
-        });
-
-        Button draftsButton = (Button) findViewById(R.id.DraftsButton);
+        Button draftsButton = (Button) findViewById(R.id.SavedPostsButton);
         draftsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newActivity(MenuOption.DRAFTS);
+                newActivity(MenuOption.SAVED);
             }
         });
 
@@ -58,10 +50,7 @@ public class MainActivity extends AppCompatActivity {
             case NEW:
                 intent = new Intent(this, NewPostActivity.class);
                 break;
-            case HISTORY:
-                intent = new Intent(this, HistoryActivity.class);
-                break;
-            case DRAFTS:
+            case SAVED:
                 intent = new Intent(this, DraftsActivity.class);
                 break;
             case SETTINGS:
