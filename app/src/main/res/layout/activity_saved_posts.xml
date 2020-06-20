@@ -172,7 +172,7 @@
     </ScrollView>
 
     <ImageButton
-        android:id="@+id/imageButton13"
+        android:id="@+id/savedPostsBack"
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginEnd="20dp"
