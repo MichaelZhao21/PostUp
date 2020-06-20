@@ -7,20 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:id="@+id/Title"
-        android:layout_width="249dp"
-        android:layout_height="214dp"
-        android:layout_marginTop="60dp"
-        android:ems="0"
-        android:gravity="center"
-        android:text=" Post Up!"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="@+id/guideline3" />
-
     <Button
         android:id="@+id/DraftsButton"
         android:layout_width="113dp"
@@ -30,25 +16,8 @@
         app:layout_constraintStart_toStartOf="@+id/NewButton"
         app:layout_constraintTop_toBottomOf="@+id/NewButton" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="30dp"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.08272506"
-        app:layout_constraintStart_toStartOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="30dp"
-        android:orientation="vertical"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_percent="0.9294404" />
-
     <Button
+        android:background="@drawable/roundedbutton"
         android:id="@+id/HistoryButton"
         android:layout_width="113dp"
         android:layout_height="68dp"
@@ -67,36 +36,29 @@
         android:text="NEW"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="@+id/Title"
+        app:layout_constraintStart_toStartOf="@+id/Title"
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <ImageButton
         android:id="@+id/SettingsButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
-        android:layout_marginTop="204dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="@+id/Title"
-        app:layout_constraintHorizontal_bias="0.491"
-        app:layout_constraintStart_toStartOf="@+id/Title"
+        android:layout_marginTop="208dp"
+        app:layout_constraintEnd_toEndOf="@+id/NewButton"
+        app:layout_constraintStart_toStartOf="@+id/NewButton"
         app:layout_constraintTop_toBottomOf="@+id/Title"
-        app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
 
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.05608755"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="40dp"
-        android:orientation="horizontal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_percent="0.9562243" />
+    <TextView
+        android:id="@+id/Title"
+        android:layout_width="249dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="220dp"
+        android:text="Post Up"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        android:textColor="@color/colorPrimaryDark"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="@string/app_name" />
 </androidx.constraintlayout.widget.ConstraintLayout>
