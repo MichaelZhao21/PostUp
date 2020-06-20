@@ -10,51 +10,70 @@
         android:id="@+id/feedbackInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
         android:text="Show error messages here!"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="119dp" />
+        app:layout_constraintEnd_toEndOf="@+id/addMediaTitle"
+        app:layout_constraintStart_toStartOf="@+id/addMediaTitle"
+        app:layout_constraintTop_toBottomOf="@+id/addMediaTitle" />
 
     <ImageButton
         android:id="@+id/addMediaBack"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:layout_editor_absoluteX="41dp"
-        tools:layout_editor_absoluteY="29dp" />
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundedbuttonprimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
 
     <EditText
         android:id="@+id/textDisplayAdd"
         android:layout_width="378dp"
         android:layout_height="423dp"
+        android:layout_marginTop="28dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
         android:visibility="invisible"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="154dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedbackInfo" />
 
     <ImageView
         android:id="@+id/pictureDisplayAdd"
         android:layout_width="377dp"
         android:layout_height="394dp"
+        android:layout_marginTop="28dp"
         android:visibility="invisible"
-        tools:layout_editor_absoluteX="15dp"
-        tools:layout_editor_absoluteY="154dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/feedbackInfo"
         tools:srcCompat="@tools:sample/avatars" />
 
     <Button
         android:id="@+id/submitAdd"
-        android:layout_width="wrap_content"
+        android:layout_width="150dp"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="56dp"
+        android:background="@drawable/roundedbuttonprimary"
         android:text="Button"
-        tools:layout_editor_absoluteX="161dp"
-        tools:layout_editor_absoluteY="642dp" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/pictureDisplayAdd"
+        app:layout_constraintStart_toStartOf="@+id/pictureDisplayAdd" />
 
     <TextView
         android:id="@+id/addMediaTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="248dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
         android:text="Add Media"
-        tools:layout_editor_absoluteX="176dp"
-        tools:layout_editor_absoluteY="80dp" />
+        android:textAlignment="center"
+        android:gravity="center"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="@+id/pictureDisplayAdd"
+        app:layout_constraintHorizontal_bias="0.612"
+        app:layout_constraintStart_toStartOf="@+id/pictureDisplayAdd"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
