@@ -11,8 +11,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewPostCallbackActivity"></activity>
-        <activity android:name=".HistoryActivity" />
+        <activity android:name=".NewPostCallbackActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".DraftsActivity" />
         <activity android:name=".NewPostActivity" />

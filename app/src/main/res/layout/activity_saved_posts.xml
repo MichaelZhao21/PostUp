@@ -7,12 +7,12 @@
     tools:context=".DraftsActivity">
 
     <TextView
-        android:id="@+id/MyDrafts"
+        android:id="@+id/savedPostsTitle"
         android:layout_width="248dp"
         android:layout_height="60dp"
         android:layout_marginStart="104dp"
         android:layout_marginTop="36dp"
-        android:text="My Drafts"
+        android:text="Saved Posts"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -176,9 +176,9 @@
         android:layout_width="65dp"
         android:layout_height="65dp"
         android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/MyDrafts"
+        app:layout_constraintEnd_toStartOf="@+id/savedPostsTitle"
         app:layout_constraintStart_toStartOf="@+id/ScrollView"
-        app:layout_constraintTop_toTopOf="@+id/MyDrafts"
+        app:layout_constraintTop_toTopOf="@+id/savedPostsTitle"
         app:srcCompat="?attr/actionModeCloseDrawable" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
