@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">Post Up</string>
     <string name="facebook_app_id">307114710681776</string>
+    <string name="image_load_error">Image loading failed!</string>
 </resources>

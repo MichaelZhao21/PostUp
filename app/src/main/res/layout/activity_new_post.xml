@@ -12,7 +12,7 @@
         android:layout_height="wrap_content"
         android:text="Generate text from image"
         tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="249dp" />
+        tools:layout_editor_absoluteY="158dp" />
 
     <Button
         android:id="@+id/writeText"
@@ -20,14 +20,6 @@
         android:layout_height="wrap_content"
         android:text="Generate image from text"
         tools:layout_editor_absoluteX="96dp"
-        tools:layout_editor_absoluteY="401dp" />
-
-    <TextView
-        android:id="@+id/feedbackInfo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Show error messages here!"
-        tools:layout_editor_absoluteX="119dp"
-        tools:layout_editor_absoluteY="569dp" />
+        tools:layout_editor_absoluteY="325dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -11,12 +11,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".NewPostCallbackActivity"></activity>
-        <activity android:name=".HistoryActivity" />
+        <activity android:name=".PostPostActivity"></activity>
+        <activity android:name=".ViewPost" />
+        <activity android:name=".AddMediaActivity" />
+        <activity android:name=".EditPostActivity" />
         <activity android:name=".SettingsActivity" />
         <activity android:name=".DraftsActivity" />
         <activity android:name=".NewPostActivity" />
-        <activity android:name=".TestGetActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -24,9 +25,14 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <provider android:authorities="com.facebook.app.FacebookContentProvider307114710681776"
+
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+
+        <provider
             android:name="com.facebook.FacebookContentProvider"
+            android:authorities="com.facebook.app.FacebookContentProvider307114710681776"
             android:exported="true" />
     </application>
 
