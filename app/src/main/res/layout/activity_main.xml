@@ -36,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="32dp"
+        app:layout_constraintGuide_percent="0.08272506"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -46,7 +46,7 @@
         android:layout_marginEnd="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="381dp" />
+        app:layout_constraintGuide_percent="0.9294404" />
 
     <Button
         android:id="@+id/HistoryButton"
@@ -88,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="40dp"
+        app:layout_constraintGuide_percent="0.05608755"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -98,5 +98,5 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="698dp" />
+        app:layout_constraintGuide_percent="0.9562243" />
 </androidx.constraintlayout.widget.ConstraintLayout>
