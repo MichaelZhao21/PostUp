@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:background="@color/background"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/Hi"
@@ -14,7 +15,7 @@
         android:layout_width="0dp"
         android:layout_height="68dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/roundedbutton"
+        android:background ="@drawable/roundedbuttonsecondary"
         android:fontFamily="sans-serif-condensed-light"
         android:text="Saved Posts"
         android:textColor="#ffffff"
@@ -28,7 +29,7 @@
         android:layout_width="0dp"
         android:layout_height="74dp"
         android:layout_marginTop="20dp"
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/roundedbuttonprimary"
         android:fontFamily="sans-serif-condensed-light"
         android:text="NEW"
         android:textAppearance="@style/TextAppearance.AppCompat.Display1"
@@ -38,7 +39,7 @@
         app:layout_constraintTop_toBottomOf="@+id/Title" />
 
     <ImageButton
-        android:background="@drawable/roundedbutton"
+        android:background="@drawable/roundedbuttonprimary"
         android:id="@+id/SettingsButton"
         android:layout_width="80dp"
         android:layout_height="80dp"
@@ -50,15 +51,16 @@
 
     <TextView
         android:id="@+id/Title"
-        android:layout_width="249dp"
+        android:layout_width="300dp"
         android:layout_height="214dp"
         android:layout_marginTop="128dp"
+        android:background="@drawable/titlebackground"
         android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:text="@string/app_name"
         android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
-        android:textColor="@color/colorPrimaryDark"
+        android:textColor="@color/darkText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
