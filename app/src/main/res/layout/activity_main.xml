@@ -11,14 +11,14 @@
         android:id="@+id/Title"
         android:layout_width="249dp"
         android:layout_height="214dp"
-        android:layout_marginTop="140dp"
-        android:ems="5"
+        android:layout_marginTop="60dp"
+        android:ems="0"
         android:inputType="textPersonName"
-        android:text="Post Up!"
+        android:text=" Post Up!"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="@+id/guideline3" />
 
     <Button
         android:id="@+id/DraftsButton"
@@ -80,4 +80,22 @@
         app:layout_constraintTop_toBottomOf="@+id/Title"
         app:layout_constraintVertical_bias="0.0"
         app:srcCompat="@drawable/ic_launcher_foreground" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="40dp"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="40dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintGuide_begin="698dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>
