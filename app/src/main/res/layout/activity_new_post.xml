@@ -6,46 +6,28 @@
     android:layout_height="match_parent"
     tools:context=".NewPostActivity">
 
-    <ImageView
-        android:id="@+id/pictureDisplay"
-        android:layout_width="305dp"
-        android:layout_height="303dp"
-        tools:layout_editor_absoluteX="53dp"
-        tools:layout_editor_absoluteY="77dp"
-        tools:srcCompat="@tools:sample/avatars" />
-
     <Button
         android:id="@+id/openImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Open Image"
-        tools:layout_editor_absoluteX="34dp"
-        tools:layout_editor_absoluteY="645dp" />
+        android:text="Generate text from image"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="249dp" />
 
     <Button
         android:id="@+id/writeText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Write Text"
-        tools:layout_editor_absoluteX="279dp"
-        tools:layout_editor_absoluteY="645dp" />
-
-    <EditText
-        android:id="@+id/editTextTextMultiLine"
-        android:layout_width="wrap_content"
-        android:layout_height="200dp"
-        android:ems="10"
-        android:gravity="start|top"
-        android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="100dp"
-        tools:layout_editor_absoluteY="393dp" />
+        android:text="Generate image from text"
+        tools:layout_editor_absoluteX="96dp"
+        tools:layout_editor_absoluteY="401dp" />
 
     <TextView
-        android:id="@+id/titleNewPost"
+        android:id="@+id/feedbackInfo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="New Post :D"
-        tools:layout_editor_absoluteX="174dp"
-        tools:layout_editor_absoluteY="30dp" />
+        android:text="Show error messages here!"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="569dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
