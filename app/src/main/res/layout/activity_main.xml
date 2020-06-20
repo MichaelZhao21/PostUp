@@ -7,13 +7,15 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <EditText
+    <TextView
         android:id="@+id/Title"
         android:layout_width="249dp"
         android:layout_height="214dp"
         android:layout_marginTop="60dp"
         android:ems="0"
+        android:gravity="center"
         android:text=" Post Up!"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
@@ -34,7 +36,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="30dp"
         android:orientation="vertical"
-        app:layout_constraintGuide_begin="32dp"
+        app:layout_constraintGuide_percent="0.08272506"
         app:layout_constraintStart_toStartOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -44,7 +46,7 @@
         android:layout_marginEnd="30dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintGuide_begin="381dp" />
+        app:layout_constraintGuide_percent="0.9294404" />
 
     <Button
         android:id="@+id/HistoryButton"
@@ -86,7 +88,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:orientation="horizontal"
-        app:layout_constraintGuide_begin="40dp"
+        app:layout_constraintGuide_percent="0.05608755"
         app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.constraintlayout.widget.Guideline
@@ -96,5 +98,5 @@
         android:layout_marginBottom="40dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintGuide_begin="698dp" />
+        app:layout_constraintGuide_percent="0.9562243" />
 </androidx.constraintlayout.widget.ConstraintLayout>
