@@ -15,6 +15,7 @@
         android:ems="5"
         android:inputType="textPersonName"
         android:text="Post Up!"
+        android:textAlignment="center"
         android:textAppearance="@style/TextAppearance.AppCompat.Display3"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="@+id/guideline"
