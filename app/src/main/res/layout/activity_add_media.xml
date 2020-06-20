@@ -6,6 +6,14 @@
     android:layout_height="match_parent"
     tools:context=".AddMediaActivity">
 
+    <TextView
+        android:id="@+id/feedbackInfo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Show error messages here!"
+        tools:layout_editor_absoluteX="119dp"
+        tools:layout_editor_absoluteY="119dp" />
+
     <ImageButton
         android:id="@+id/addMediaBack"
         android:layout_width="wrap_content"
