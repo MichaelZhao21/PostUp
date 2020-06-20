@@ -2,17 +2,82 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/Hi"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+    <EditText
+        android:id="@+id/Title"
+        android:layout_width="249dp"
+        android:layout_height="214dp"
+        android:layout_marginTop="140dp"
+        android:ems="5"
+        android:inputType="textPersonName"
+        android:text="Post Up!"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display3"
+        app:layout_constraintEnd_toStartOf="@+id/guideline2"
+        app:layout_constraintStart_toStartOf="@+id/guideline"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <Button
+        android:id="@+id/DraftsButton"
+        android:layout_width="113dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="20dp"
+        android:text="Drafts"
+        app:layout_constraintStart_toStartOf="@+id/NewButton"
+        app:layout_constraintTop_toBottomOf="@+id/NewButton" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="30dp"
+        android:orientation="vertical"
+        app:layout_constraintGuide_begin="32dp"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="30dp"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintGuide_begin="381dp" />
+
+    <Button
+        android:id="@+id/HistoryButton"
+        android:layout_width="113dp"
+        android:layout_height="68dp"
+        android:layout_marginTop="20dp"
+        android:text="History"
+        app:layout_constraintBottom_toBottomOf="@+id/DraftsButton"
+        app:layout_constraintEnd_toEndOf="@+id/NewButton"
+        app:layout_constraintTop_toBottomOf="@+id/NewButton"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <Button
+        android:id="@+id/NewButton"
+        android:layout_width="251dp"
+        android:layout_height="74dp"
+        android:layout_marginTop="20dp"
+        android:text="NEW"
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintEnd_toEndOf="@+id/Title"
+        app:layout_constraintTop_toBottomOf="@+id/Title" />
+
+    <ImageButton
+        android:id="@+id/SettingsButton"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_marginTop="204dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Title"
+        app:layout_constraintHorizontal_bias="0.491"
+        app:layout_constraintStart_toStartOf="@+id/Title"
+        app:layout_constraintTop_toBottomOf="@+id/Title"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_launcher_foreground" />
 </androidx.constraintlayout.widget.ConstraintLayout>
