@@ -30,12 +30,14 @@ public class SavedPostsActivity extends AppCompatActivity {
             PostData data = Global.data.get(key);
             ImageButton button = savedDraftButtons[pos++];
             button.setImageBitmap(data.img);
-            button.setOnClickListener(v -> clickPic());
+            button.setOnClickListener(v -> clickPic(key));
         }
     }
 
-    protected void clickPic() {
-
+    protected void clickPic(String key) {
+        Global.keyToUseForCurrentSavedPost = key;
+        Intent intent = new Intent(this, ViewPostActivity.class);
+        startActivity(intent);
     }
 
     protected void back() {
