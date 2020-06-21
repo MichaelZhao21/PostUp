@@ -17,8 +17,6 @@ public class SavedPostsActivity extends AppCompatActivity {
         ImageButton exit = findViewById(R.id.backSaved);
         exit.setOnClickListener(v -> back());
 
-        System.out.println(loadedPosts.keySet().size());
-
         // Array of the 9 image buttons we can use lmao
         ImageButton[] savedDraftButtons = {
                 findViewById(R.id.imageButton), findViewById(R.id.imageButton2),
