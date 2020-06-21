@@ -8,51 +8,71 @@
 
     <ImageButton
         android:id="@+id/backViewPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:srcCompat="@drawable/abc_vector_test"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="16dp" />
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundedbuttonprimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
 
     <ImageView
         android:id="@+id/pictureDisplayView"
         android:layout_width="347dp"
         android:layout_height="301dp"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="71dp"
+        android:layout_marginTop="20dp"
+        app:layout_constraintEnd_toEndOf="@+id/textDisplayView"
+        app:layout_constraintStart_toStartOf="@+id/textDisplayView"
+        app:layout_constraintTop_toBottomOf="@+id/viewPostTitle"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/textDisplayView"
-        android:layout_width="350dp"
-        android:layout_height="236dp"
+        android:layout_width="355dp"
+        android:layout_height="206dp"
+        android:layout_marginTop="18dp"
         android:ems="10"
         android:gravity="start|top"
         android:inputType="textMultiLine"
-        tools:layout_editor_absoluteX="30dp"
-        tools:layout_editor_absoluteY="399dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/pictureDisplayView" />
 
     <Button
         android:id="@+id/toPostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="72dp"
+        android:background="@drawable/roundedbuttonprimary"
         android:text="Post"
-        tools:layout_editor_absoluteX="92dp"
-        tools:layout_editor_absoluteY="651dp" />
+        app:layout_constraintEnd_toStartOf="@+id/editPostButton"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDisplayView" />
 
     <Button
         android:id="@+id/editPostButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="76dp"
+        android:background="@drawable/roundedbuttonprimary"
         android:text="Edit"
-        tools:layout_editor_absoluteX="245dp"
-        tools:layout_editor_absoluteY="651dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textDisplayView" />
 
     <TextView
+        android:textAlignment="center"
+        android:gravity="center"
         android:id="@+id/viewPostTitle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="248dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
         android:text="[Post Name]"
-        tools:layout_editor_absoluteX="177dp"
-        tools:layout_editor_absoluteY="27dp" />
+        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
+        app:layout_constraintStart_toEndOf="@+id/backViewPost"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,7 +12,6 @@
         android:layout_height="60dp"
         android:layout_marginStart="16dp"
         android:layout_marginTop="30dp"
-        android:background=""
         android:text="My Drafts"
         android:textAlignment="center"
         android:gravity="center"
@@ -181,7 +180,7 @@
         android:background="@drawable/roundedbuttonprimary"
         app:layout_constraintStart_toStartOf="@+id/ScrollView"
         app:layout_constraintTop_toTopOf="@+id/MyDrafts"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:srcCompat="@drawable/abc_vector_test" />
 
     <ImageButton
         android:id="@+id/DraftsButton"
