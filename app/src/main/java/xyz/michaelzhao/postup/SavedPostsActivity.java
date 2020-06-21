@@ -22,6 +22,8 @@ public class SavedPostsActivity extends AppCompatActivity {
         // Load previous saved posts
         HashMap<String, PostData> loadedPosts = Util.load(getApplicationContext(), SAVES_FILE_NAME);
 
+        System.out.println(loadedPosts.keySet().size());
+
         // Array of the 9 image buttons we can use lmao
         ImageButton[] savedDraftButtons = {findViewById(R.id.imageButton1), findViewById(R.id.imageButton2),
                 findViewById(R.id.imageButton3), findViewById(R.id.imageButton4),

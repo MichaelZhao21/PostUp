@@ -5,31 +5,28 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.ParcelFileDescriptor;
-import android.view.View;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+
 import org.json.JSONArray;
-import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.BufferedReader;
 import java.io.File;
-import java.io.FileDescriptor;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.nio.charset.StandardCharsets;
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 public class EditPostActivity extends AppCompatActivity {
 
@@ -54,6 +51,9 @@ public class EditPostActivity extends AppCompatActivity {
 
         Button saveButton = findViewById(R.id.save);
         saveButton.setOnClickListener(v -> save());
+
+        Button suggestButton = findViewById(R.id.suggest);
+        suggestButton.setOnClickListener(v -> suggest());
     }
 
     protected void save() {
@@ -121,5 +121,25 @@ public class EditPostActivity extends AppCompatActivity {
                 imageView.setImageBitmap(Util.getBitmapFromUri(uri, getContentResolver()));
             }
         }
+    }
+
+    protected void suggest() {
+        Log.d("bitmap", Util.bitmapToString(Util.getBitmapFromUri(uri, getContentResolver())));
+//        String url = "https://api.michaelzhao.xyz/postup/vision";
+//        StringRequest postRequest = new StringRequest(Request.Method.POST, url,
+//                response -> {
+//                    Log.d("Response", response);
+//                },
+//                error -> {
+//                    Log.d("Error", error.toString());
+//                }) {
+//            @Override
+//            protected Map<String, String> getParams() {
+//                Map<String, String> params = new HashMap<>();
+//                Bitmap map = Util.getBitmapFromUri(uri, getContentResolver());
+//                params.put("image", Util.bitmapToString(map));
+//                return params;
+//            }
+//        };
     }
 }
