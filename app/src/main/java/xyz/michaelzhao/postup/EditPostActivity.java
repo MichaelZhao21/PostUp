@@ -49,11 +49,23 @@ public class EditPostActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_post);
 
-        Intent intent = getIntent();
-        name = intent.getStringExtra("name");
+        if (Global.keyToUseForCurrentSavedPost != null) {
+            PostData data = Global.data.get(Global.keyToUseForCurrentSavedPost);
+            name = data.name;
+            ImageView imageView = findViewById(R.id.pictureDisplay);
+            imageView.setImageBitmap(data.img);
+            TextView textView = findViewById(R.id.textDisplay);
+            textView.setText(data.text);
+            TextView title = findViewById(R.id.editPostTitle);
+            title.setText(name);
+        }
+        else {
+            Intent intent = getIntent();
+            name = intent.getStringExtra("name");
 
-        TextView title = findViewById(R.id.editPostTitle);
-        title.setText(name);
+            TextView title = findViewById(R.id.editPostTitle);
+            title.setText(name);
+        }
 
         ImageView imageView = findViewById(R.id.pictureDisplay);
         imageView.setOnClickListener(v -> openPhoto());
