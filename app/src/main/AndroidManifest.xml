@@ -13,11 +13,9 @@
         android:theme="@style/AppTheme">
         <activity android:name=".PostPostActivity" />
         <activity android:name=".ViewPost" />
-        <activity android:name=".AddMediaActivity" />
         <activity android:name=".EditPostActivity" />
         <activity android:name=".SettingsActivity" />
-        <activity android:name=".DraftsActivity" />
-        <activity android:name=".NewPostActivity" />
+        <activity android:name=".SavedPostsActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

@@ -3,14 +3,10 @@ package xyz.michaelzhao.postup;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.content.pm.PackageInfo;
-import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
-enum MenuOption {NEW, SAVED, SETTINGS}
 
 public class MainActivity extends AppCompatActivity {
     @Override
@@ -22,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newActivity(MenuOption.NEW);
+                createPost();
             }
         });
 
@@ -30,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
         settingsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newActivity(MenuOption.SETTINGS);
+                newActivity("settings");
             }
         });
 
@@ -38,27 +34,25 @@ public class MainActivity extends AppCompatActivity {
         draftsButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                newActivity(MenuOption.SAVED);
+                newActivity("saved");
             }
         });
 
     }
 
-    protected void newActivity(MenuOption option) {
+    protected void createPost() {
+        Intent intent = new Intent(this, EditPostActivity.class);
+        startActivity(intent);
+    }
+
+    protected void newActivity(String option) {
         Intent intent;
-        switch (option) {
-            case NEW:
-                intent = new Intent(this, NewPostActivity.class);
-                break;
-            case SAVED:
-                intent = new Intent(this, DraftsActivity.class);
-                break;
-            case SETTINGS:
+        if (option.equals("saved"))
+            intent = new Intent(this, SavedPostsActivity.class);
+        else if (option.equals("settings"))
                 intent = new Intent(this, SettingsActivity.class);
-                break;
-            default:
-                return;
-        }
+        else
+            return;
         startActivity(intent);
     }
 }

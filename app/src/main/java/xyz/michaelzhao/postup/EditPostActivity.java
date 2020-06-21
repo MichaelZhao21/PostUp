@@ -1,5 +1,6 @@
 package xyz.michaelzhao.postup;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -9,13 +10,19 @@ import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import java.io.FileDescriptor;
 import java.io.IOException;
 
 public class EditPostActivity extends AppCompatActivity {
+
+    public static final int CHOOSE_IMAGE = 1;
+    public Uri uri;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,26 +30,53 @@ public class EditPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_post);
 
         Intent intent = getIntent();
-        String type = intent.getStringExtra("type");
-        if (type.equals("both")) {
-            // TODO: Allow for adding both
-        }
-        else if (type.equals("image")) {
-            Uri uri = Uri.parse(intent.getStringExtra("uri"));
-            ImageView view = (ImageView) findViewById(R.id.pictureDisplay);
-            try {
-                view.setImageBitmap(getBitmapFromUri(uri));
-            } catch (IOException e) {
-                e.printStackTrace();
+        String name = intent.getStringExtra("name");
+
+        TextView title = findViewById(R.id.editPostTitle);
+        title.setText(name);
+
+        ImageView imageView = findViewById(R.id.pictureDisplay);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openPhoto();
             }
-        }
-        else if (type.equals("text")) {
-            String text = intent.getStringExtra("text");
-            EditText editText = (EditText) findViewById(R.id.textDisplay);
-            editText.setText(text);
-        }
-        else {
-            Log.e("EditPostActivityIntent", "No type stored in extra \"type\"");
+        });
+
+        Button saveButton = findViewById(R.id.save);
+        saveButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                save();
+            }
+        });
+    }
+
+    protected void save() {
+        // GRACE WRITE STUFF HERE
+    }
+
+    protected void openPhoto() {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_GET_CONTENT);
+        startActivityForResult(intent, CHOOSE_IMAGE);
+    }
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK) {
+            if (data != null) {
+//                uri = data.getClipData().getItemAt(1).getUri(); TODO: add support to get and display multiple images
+                uri = data.getData();
+                ImageView imageView = findViewById(R.id.pictureDisplay);
+                try {
+                    imageView.setImageBitmap(getBitmapFromUri(uri));
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
         }
     }
 
