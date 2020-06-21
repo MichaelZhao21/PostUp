@@ -175,12 +175,7 @@ public class EditPostActivity extends AppCompatActivity {
                     JSONObject res = new JSONObject(response.toString());
 
                     String quote = ((JSONObject)((JSONArray)res.get("quotes")).get(0)).get("quote").toString();
-                    runOnUiThread(new Runnable() {
-                        @Override
-                        public void run() {
-                            setSuggestion(quote, 1);
-                        }
-                    });
+                    runOnUiThread(() -> setSuggestion(quote, 1));
 
                 } catch (IOException | JSONException e) {
                     e.printStackTrace();
