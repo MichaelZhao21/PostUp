@@ -23,6 +23,7 @@ public class EditPostActivity extends AppCompatActivity {
 
     public static final int CHOOSE_IMAGE = 1;
     public Uri uri;
+    public String name;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,7 +31,7 @@ public class EditPostActivity extends AppCompatActivity {
         setContentView(R.layout.activity_edit_post);
 
         Intent intent = getIntent();
-        String name = intent.getStringExtra("name");
+        name = intent.getStringExtra("name");
 
         TextView title = findViewById(R.id.editPostTitle);
         title.setText(name);
