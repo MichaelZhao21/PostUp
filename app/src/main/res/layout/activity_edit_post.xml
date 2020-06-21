@@ -53,14 +53,12 @@
         app:layout_constraintTop_toTopOf="@+id/pictureDisplay" />
 
     <TextView
+        style="@style/Header"
         android:id="@+id/titleNewPost"
         android:layout_width="248dp"
         android:layout_height="60dp"
         android:layout_marginTop="30dp"
-        android:gravity="center"
         android:text="New Post :D"
-        android:textAlignment="center"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
