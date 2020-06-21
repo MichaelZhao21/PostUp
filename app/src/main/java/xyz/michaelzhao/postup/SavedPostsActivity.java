@@ -6,7 +6,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.Objects;
 
 public class SavedPostsActivity extends AppCompatActivity {
 
@@ -29,7 +31,11 @@ public class SavedPostsActivity extends AppCompatActivity {
 
         int pos = 0;
         for(String key : loadedPosts.keySet()) {
-            //savedDraftButtons[pos].setImageBitmap(getBitmapFromUri(loadedPosts.get(key).img, getContentResolver());
+            try {
+                savedDraftButtons[pos].setImageBitmap(Util.getBitmapFromUri(loadedPosts.get(key).img, getContentResolver()));
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
             pos++;
             if(pos == 9) {
                 break;
