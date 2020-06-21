@@ -9,19 +9,32 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditPostActivity extends AppCompatActivity {
 
     public static final int CHOOSE_IMAGE = 1;
+    public static final String SAVES_FILE_NAME = "saves.json";
     public Uri uri;
     public String name;
 
@@ -37,24 +50,86 @@ public class EditPostActivity extends AppCompatActivity {
         title.setText(name);
 
         ImageView imageView = findViewById(R.id.pictureDisplay);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPhoto();
-            }
-        });
+        imageView.setOnClickListener(v -> openPhoto());
 
         Button saveButton = findViewById(R.id.save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                save();
-            }
-        });
+        saveButton.setOnClickListener(v -> save());
     }
 
     protected void save() {
-        // TODO: write data to save file
+        // Load previous saved posts
+        HashMap<String, PostData> loadedPosts = load();
+
+        // Get file
+        File file = new File(getApplicationContext().getFilesDir(), "save.json");
+
+        // Create json array of saved posts from HashMap
+        JSONArray savedPostsArray = new JSONArray();
+        for(String key : loadedPosts.keySet()) {
+            savedPostsArray.put(PostData.PostDataToJsonObject(loadedPosts.get(key)));
+        }
+
+        // Get text from the text box
+        EditText editText = findViewById(R.id.textDisplay);
+        String text = editText.getText().toString();
+
+        // Create object for this post
+        JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, uri));
+
+        name = "IM A DUMMY THICC";
+
+        // If the name already exists in another saved post, sucks lmfao
+        if(loadedPosts.containsKey(name)) {
+            System.out.println("That name already exists");
+            return;
+        }
+
+        try {
+
+            // Add the object to the array
+            savedPostsArray.put(currSave);
+
+            // Write to file
+            FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
+            fs.write(savedPostsArray.toString().getBytes());
+            fs.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    protected HashMap<String, PostData> load() {
+        // <name, postdata object> to store each saved post
+        HashMap<String, PostData> postDataHashMap = new HashMap<>();
+
+        try {
+            // Get input file stream
+            FileInputStream fis = getApplicationContext().openFileInput(SAVES_FILE_NAME);
+            InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
+
+            // Get stringbuilder and buffered reader
+            StringBuilder sb = new StringBuilder();
+            BufferedReader f = new BufferedReader(inputStreamReader);
+
+            // Read file to string
+            String line = f.readLine();
+            while (line != null) {
+                sb.append(line).append('\n');
+                line = f.readLine();
+            }
+
+            JSONArray arr = new JSONArray(sb.toString());
+            // Loop through the JSONArray and add to the map
+            for(int i = 0; i < arr.length(); i++) {
+                PostData data = PostData.JsonObjectToPostData(arr.getJSONObject(i));
+                postDataHashMap.put(data.name, data);
+            }
+
+        } catch (IOException | JSONException e) {
+            e.printStackTrace();
+        }
+        return postDataHashMap;
     }
 
     protected void openPhoto() {
