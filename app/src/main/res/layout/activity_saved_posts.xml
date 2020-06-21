@@ -7,24 +7,24 @@
     tools:context=".DraftsActivity">
 
     <TextView
-        android:id="@+id/savedPostsTitle"
+        style="@style/Header"
+        android:id="@+id/MyDrafts"
         android:layout_width="248dp"
         android:layout_height="60dp"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="36dp"
-        android:text="Saved Posts"
-        android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="30dp"
+        android:text="Saved Drafts"
+        app:layout_constraintStart_toEndOf="@+id/imageButton13"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ScrollView
         android:id="@+id/ScrollView"
-        android:layout_width="363dp"
-        android:layout_height="596dp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_width="370dp"
+        android:layout_height="570dp"
+        android:layout_marginTop="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/MyDrafts">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -154,31 +154,16 @@
                 android:layout_width="match_parent"
                 android:layout_height="20dp" />
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="149dp"
-                android:orientation="horizontal">
-
-                <ImageButton
-                    android:id="@+id/imageButton10"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    tools:srcCompat="@tools:sample/avatars" />
-
-            </LinearLayout>
-
         </LinearLayout>
     </ScrollView>
 
     <ImageButton
-        android:id="@+id/savedPostsBack"
+        android:id="@+id/imageButton13"
         android:layout_width="65dp"
         android:layout_height="65dp"
-        android:layout_marginEnd="20dp"
-        app:layout_constraintEnd_toStartOf="@+id/savedPostsTitle"
+        android:background="@drawable/roundedbuttonprimary"
         app:layout_constraintStart_toStartOf="@+id/ScrollView"
-        app:layout_constraintTop_toTopOf="@+id/savedPostsTitle"
-        app:srcCompat="?attr/actionModeCloseDrawable" />
+        app:layout_constraintTop_toTopOf="@+id/MyDrafts"
+        app:srcCompat="@drawable/abc_vector_test" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

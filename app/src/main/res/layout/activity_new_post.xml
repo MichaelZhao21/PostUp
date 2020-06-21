@@ -6,32 +6,40 @@
     android:layout_height="match_parent"
     tools:context=".NewPostActivity">
 
+    <ImageButton
+        android:id="@+id/goBack"
+        android:layout_width="65dp"
+        android:layout_height="65dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:background="@drawable/roundedbuttonprimary"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/abc_vector_test" />
+
     <Button
+        android:textColor="@color/darkText"
         android:id="@+id/openImage"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="158dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="119dp"
+        android:layout_width="248dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="192dp"
+        android:background="@drawable/roundedbuttonprimary"
         android:text="Generate text from image"
-        app:layout_constraintBottom_toTopOf="@+id/writeText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
+        android:background="@drawable/roundedbuttonsecondary"
+        android:textColor="@color/whitebutnotrlly"
         android:id="@+id/writeText"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="96dp"
-        android:layout_marginTop="119dp"
-        android:layout_marginEnd="97dp"
-        android:layout_marginBottom="358dp"
+        android:layout_width="248dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="48dp"
         android:text="Generate image from text"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/openImage"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/openImage"
         app:layout_constraintTop_toBottomOf="@+id/openImage" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
