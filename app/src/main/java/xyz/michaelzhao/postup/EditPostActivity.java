@@ -28,6 +28,8 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 
 public class EditPostActivity extends AppCompatActivity {
 
@@ -65,25 +67,34 @@ public class EditPostActivity extends AppCompatActivity {
     }
 
     protected void save() {
+        // Load previous saved posts
+        HashMap<String, PostData> loadedPosts = load();
+
         // Get file
         File file = new File(getApplicationContext().getFilesDir(), "save.json");
 
-        // Create json array of saved posts
+        // Create json array of saved posts from HashMap
         JSONArray savedPostsArray = new JSONArray();
+        for(String key : loadedPosts.keySet()) {
+            savedPostsArray.put(PostData.PostDataToJsonObject(loadedPosts.get(key)));
+        }
 
         // Get text from the text box
         EditText editText = findViewById(R.id.textDisplay);
         String text = editText.getText().toString();
 
         // Create object for this post
-        JSONObject currSave = new JSONObject();
+        JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, uri));
 
         name = "IM A DUMMY THICC";
+
+        // If the name already exists in another saved post, sucks lmfao
+        if(loadedPosts.containsKey(name)) {
+            System.out.println("That name already exists");
+            return;
+        }
+
         try {
-            // Put the strings into the object
-            currSave.put("name", name);
-            currSave.put("text", text);
-            currSave.put("image", uri.toString());
 
             // Add the object to the array
             savedPostsArray.put(currSave);
@@ -92,15 +103,16 @@ public class EditPostActivity extends AppCompatActivity {
             FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
             fs.write(savedPostsArray.toString().getBytes());
             fs.close();
-        } catch (JSONException | IOException e) {
+        } catch (IOException e) {
             e.printStackTrace();
         }
 
-        load();
-
     }
 
-    protected void load() {
+    protected HashMap<String, PostData> load() {
+        // <name, postdata object> to store each saved post
+        HashMap<String, PostData> postDataHashMap = new HashMap<>();
+
         try {
             // Get input file stream
             FileInputStream fis = getApplicationContext().openFileInput(SAVES_FILE_NAME);
@@ -118,16 +130,15 @@ public class EditPostActivity extends AppCompatActivity {
             }
 
             JSONArray arr = new JSONArray(sb.toString());
-            JSONObject obj = arr.getJSONObject(0);
-            System.out.println(obj.toString());
-            System.out.println(obj.get("name").toString());
-            System.out.println(obj.get("text").toString());
-            System.out.println(Uri.parse(obj.get("image").toString()));
-
+            // Loop through the JSONArray and add to the map
+            for(int i = 0; i < arr.length(); i++) {
+                postDataHashMap.put(arr.getJSONObject(i).get("name").toString(), PostData.JsonObjectToPostData(arr.getJSONObject(i)));
+            }
 
         } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
+        return postDataHashMap;
     }
 
     protected void openPhoto() {
