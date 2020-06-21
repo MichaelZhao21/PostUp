@@ -73,8 +73,10 @@ public class EditPostActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.textDisplay);
         String text = editText.getText().toString();
 
+        name = "IM A DUMMY THICC";
+
         // Create object for this post
-        JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, uri));
+        JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, Util.getBitmapFromUri(uri, getContentResolver())));
 
         // If the name already exists in another saved post, sucks lmfao
         if(loadedPosts.containsKey(name)) {
@@ -116,12 +118,7 @@ public class EditPostActivity extends AppCompatActivity {
 //                uri = data.getClipData().getItemAt(1).getUri(); TODO: add support to get and display multiple images
                 uri = data.getData();
                 ImageView imageView = findViewById(R.id.pictureDisplay);
-                try {
-                    imageView.setImageBitmap(Util.getBitmapFromUri(uri, getContentResolver()));
-                } catch (IOException e) {
-
-                    e.printStackTrace();
-                }
+                imageView.setImageBitmap(Util.getBitmapFromUri(uri, getContentResolver()));
             }
         }
     }
