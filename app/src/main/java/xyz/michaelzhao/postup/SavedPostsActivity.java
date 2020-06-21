@@ -31,11 +31,11 @@ public class SavedPostsActivity extends AppCompatActivity {
 
         int pos = 0;
         for(String key : loadedPosts.keySet()) {
-            try {
-                savedDraftButtons[pos].setImageBitmap(Util.getBitmapFromUri(loadedPosts.get(key).img, getContentResolver()));
-            } catch (IOException e) {
-                e.printStackTrace();
-            }
+//            try {
+//                savedDraftButtons[pos].setImageBitmap(Util.getBitmapFromUri(loadedPosts.get(key).img, getContentResolver()));
+//            } catch (IOException e) {
+//                e.printStackTrace();
+//            }
             pos++;
             if(pos == 9) {
                 break;

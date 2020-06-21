@@ -6,6 +6,7 @@ import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.ParcelFileDescriptor;
+import android.util.Base64;
 import android.widget.EditText;
 
 import org.json.JSONArray;
@@ -13,9 +14,11 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayOutputStream;
 import java.io.File;
 import java.io.FileDescriptor;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -45,7 +48,7 @@ public class Util {
 
             JSONArray arr = new JSONArray(sb.toString());
             // Loop through the JSONArray and add to the map
-            for(int i = 0; i < arr.length(); i++) {
+            for (int i = 0; i < arr.length(); i++) {
                 PostData data = PostData.JsonObjectToPostData(arr.getJSONObject(i));
                 postDataHashMap.put(data.name, data);
             }
@@ -56,12 +59,34 @@ public class Util {
         return postDataHashMap;
     }
 
-    protected static Bitmap getBitmapFromUri(Uri uri, ContentResolver contentResolver) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor =
-                contentResolver.openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
-        return image;
+    protected static Bitmap getBitmapFromUri(Uri uri, ContentResolver contentResolver) {
+        try {
+            ParcelFileDescriptor parcelFileDescriptor =
+                    contentResolver.openFileDescriptor(uri, "r");
+            FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+            Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+            parcelFileDescriptor.close();
+            return image;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+
+    public static String bitmapToString(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
+    public static Bitmap stringToBitmap(String string) {
+        try {
+            byte[] bytes = Base64.decode(string, Base64.DEFAULT);
+            return BitmapFactory.decodeByteArray(bytes, 0, bytes.length);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return null;
+        }
     }
 }
