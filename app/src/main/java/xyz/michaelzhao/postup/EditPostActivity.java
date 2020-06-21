@@ -93,6 +93,10 @@ public class EditPostActivity extends AppCompatActivity {
             FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
             fs.write(savedPostsArray.toString().getBytes());
             fs.close();
+
+            Intent intent = new Intent(this, SavedPostsActivity.class);
+            startActivity(intent);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -115,20 +119,12 @@ public class EditPostActivity extends AppCompatActivity {
                 uri = data.getData();
                 ImageView imageView = findViewById(R.id.pictureDisplay);
                 try {
-                    imageView.setImageBitmap(getBitmapFromUri(uri));
+                    imageView.setImageBitmap(Util.getBitmapFromUri(uri, getContentResolver()));
                 } catch (IOException e) {
+
                     e.printStackTrace();
                 }
             }
         }
-    }
-
-    protected Bitmap getBitmapFromUri(Uri uri) throws IOException {
-        ParcelFileDescriptor parcelFileDescriptor =
-                getContentResolver().openFileDescriptor(uri, "r");
-        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
-        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
-        parcelFileDescriptor.close();
-        return image;
     }
 }

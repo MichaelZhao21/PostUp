@@ -1,6 +1,11 @@
 package xyz.michaelzhao.postup;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.net.Uri;
+import android.os.ParcelFileDescriptor;
 import android.widget.EditText;
 
 import org.json.JSONArray;
@@ -9,6 +14,7 @@ import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileDescriptor;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -48,5 +54,14 @@ public class Util {
             e.printStackTrace();
         }
         return postDataHashMap;
+    }
+
+    protected static Bitmap getBitmapFromUri(Uri uri, ContentResolver contentResolver) throws IOException {
+        ParcelFileDescriptor parcelFileDescriptor =
+                contentResolver.openFileDescriptor(uri, "r");
+        FileDescriptor fileDescriptor = parcelFileDescriptor.getFileDescriptor();
+        Bitmap image = BitmapFactory.decodeFileDescriptor(fileDescriptor);
+        parcelFileDescriptor.close();
+        return image;
     }
 }
