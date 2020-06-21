@@ -73,10 +73,10 @@ public class EditPostActivity extends AppCompatActivity {
         EditText editText = findViewById(R.id.textDisplay);
         String text = editText.getText().toString();
 
+        name = "IM A DUMMY THICC";
+
         // Create object for this post
         JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, uri));
-
-        name = "IM A DUMMY THICC";
 
         // If the name already exists in another saved post, sucks lmfao
         if(loadedPosts.containsKey(name)) {
