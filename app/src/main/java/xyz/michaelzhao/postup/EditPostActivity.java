@@ -25,7 +25,7 @@ public class EditPostActivity extends AppCompatActivity {
         Intent intent = getIntent();
         String type = intent.getStringExtra("type");
         if (type.equals("both")) {
-
+            // TODO: Allow for adding both
         }
         else if (type.equals("image")) {
             Uri uri = Uri.parse(intent.getStringExtra("uri"));
