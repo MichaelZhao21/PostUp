@@ -9,8 +9,11 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,7 +23,7 @@ import java.io.IOException;
 public class AddMediaActivity extends AppCompatActivity {
 
     public static final int CHOOSE_IMAGE = 1;
-    private Bitmap image;
+    private Uri uri;
     private String type;
 
     @Override
@@ -33,6 +36,21 @@ public class AddMediaActivity extends AppCompatActivity {
 
         EditText editText = (EditText) findViewById(R.id.textDisplayAdd);
         ImageView imageView = (ImageView) findViewById(R.id.pictureDisplayAdd);
+        ImageButton backButton = (ImageButton) findViewById(R.id.addMediaBack);
+        backButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                back();
+            }
+        });
+
+        Button submitButton = (Button) findViewById(R.id.submitAdd);
+        submitButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                moveToCallback();
+            }
+        });
 
         assert type != null;
         if (type.equals("image")) {
@@ -56,21 +74,20 @@ public class AddMediaActivity extends AppCompatActivity {
         intent.setType("image/*");
         intent.setAction(Intent.ACTION_GET_CONTENT);
         startActivityForResult(intent, CHOOSE_IMAGE);
+//        intent.putExtra(Intent.EXTRA_ALLOW_MULTIPLE, true); TODO: allow picking extra
+//        startActivityForResult(Intent.createChooser(intent, "Select Pictures"), CHOOSE_IMAGE);
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == CHOOSE_IMAGE && resultCode == RESULT_OK) {
-            Uri uri = null;
             if (data != null) {
+//                uri = data.getClipData().getItemAt(1).getUri(); TODO: add support to get and display multiple images
                 uri = data.getData();
-
+                ImageView imageView = (ImageView) findViewById(R.id.pictureDisplayAdd);
                 try {
-                    image = getBitmapFromUri(uri);
-                    ImageView iv = (ImageView) findViewById(R.id.pictureDisplay);
-                    iv.setImageBitmap(image);
-                    moveToCallback();
+                    imageView.setImageBitmap(getBitmapFromUri(uri));
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
@@ -96,12 +113,17 @@ public class AddMediaActivity extends AppCompatActivity {
         intent.putExtra("type", type);
 
         if (type.equals("image")) {
-            intent.putExtra("image", image);
+            intent.putExtra("uri", uri.toString());
         }
         else {
             EditText editText = (EditText) findViewById(R.id.textDisplayAdd);
             intent.putExtra("text", editText.getText().toString());
         }
+        startActivity(intent);
+    }
+
+    protected void back() {
+        Intent intent = new Intent(this, NewPostActivity.class);
         startActivity(intent);
     }
 }
