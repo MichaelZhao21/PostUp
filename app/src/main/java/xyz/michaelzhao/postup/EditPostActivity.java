@@ -58,7 +58,7 @@ public class EditPostActivity extends AppCompatActivity {
 
     protected void save() {
         // Load previous saved posts
-        HashMap<String, PostData> loadedPosts = load();
+        HashMap<String, PostData> loadedPosts = Util.load(getApplicationContext(), SAVES_FILE_NAME);
 
         // Get file
         File file = new File(getApplicationContext().getFilesDir(), "save.json");
@@ -97,39 +97,6 @@ public class EditPostActivity extends AppCompatActivity {
             e.printStackTrace();
         }
 
-    }
-
-    protected HashMap<String, PostData> load() {
-        // <name, postdata object> to store each saved post
-        HashMap<String, PostData> postDataHashMap = new HashMap<>();
-
-        try {
-            // Get input file stream
-            FileInputStream fis = getApplicationContext().openFileInput(SAVES_FILE_NAME);
-            InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
-
-            // Get stringbuilder and buffered reader
-            StringBuilder sb = new StringBuilder();
-            BufferedReader f = new BufferedReader(inputStreamReader);
-
-            // Read file to string
-            String line = f.readLine();
-            while (line != null) {
-                sb.append(line).append('\n');
-                line = f.readLine();
-            }
-
-            JSONArray arr = new JSONArray(sb.toString());
-            // Loop through the JSONArray and add to the map
-            for(int i = 0; i < arr.length(); i++) {
-                PostData data = PostData.JsonObjectToPostData(arr.getJSONObject(i));
-                postDataHashMap.put(data.name, data);
-            }
-
-        } catch (IOException | JSONException e) {
-            e.printStackTrace();
-        }
-        return postDataHashMap;
     }
 
     protected void openPhoto() {
