@@ -4,20 +4,15 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
-import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import com.android.volley.AuthFailureError;
-import com.android.volley.Request;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -25,13 +20,10 @@ import org.json.JSONObject;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.util.HashMap;
-import java.util.Map;
 
 public class EditPostActivity extends AppCompatActivity {
 
     public static final int CHOOSE_IMAGE = 1;
-    public static final String SAVES_FILE_NAME = "saves.json";
     public Uri uri;
     public String name;
 
@@ -57,29 +49,33 @@ public class EditPostActivity extends AppCompatActivity {
     }
 
     protected void save() {
-        // Load previous saved posts
-        HashMap<String, PostData> loadedPosts = Util.load(getApplicationContext(), SAVES_FILE_NAME);
+
+        // Force keyboard die
+        InputMethodManager imm = (InputMethodManager) getSystemService(INPUT_METHOD_SERVICE);
+        View view = getCurrentFocus();
+        if (view == null) {
+            view = new View(this);
+        }
+        imm.hideSoftInputFromWindow(view.getWindowToken(), 0);
 
         // Get file
-        File file = new File(getApplicationContext().getFilesDir(), "save.json");
+        File file = new File(getApplicationContext().getFilesDir(), Global.SAVES_FILE_NAME);
 
         // Create json array of saved posts from HashMap
         JSONArray savedPostsArray = new JSONArray();
-        for(String key : loadedPosts.keySet()) {
-            savedPostsArray.put(PostData.PostDataToJsonObject(loadedPosts.get(key)));
+        for(String key : Global.data.keySet()) {
+            savedPostsArray.put(PostData.PostDataToJsonObject(Global.data.get(key)));
         }
 
         // Get text from the text box
         EditText editText = findViewById(R.id.textDisplay);
         String text = editText.getText().toString();
 
-        name = "IM A DUMMY THICC";
-
         // Create object for this post
         JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, Util.getBitmapFromUri(uri, getContentResolver())));
 
         // If the name already exists in another saved post, sucks lmfao
-        if(loadedPosts.containsKey(name)) {
+        if(Global.data.containsKey(name)) {
             System.out.println("That name already exists");
             return;
         }
@@ -90,9 +86,12 @@ public class EditPostActivity extends AppCompatActivity {
             savedPostsArray.put(currSave);
 
             // Write to file
-            FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
+            FileOutputStream fs = getApplicationContext().openFileOutput(Global.SAVES_FILE_NAME, MODE_PRIVATE);
             fs.write(savedPostsArray.toString().getBytes());
             fs.close();
+
+            PostData data = PostData.JsonObjectToPostData(currSave);
+            Global.data.put(data.name, data);
 
             Intent intent = new Intent(this, SavedPostsActivity.class);
             startActivity(intent);

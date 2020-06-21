@@ -2,50 +2,46 @@ package xyz.michaelzhao.postup;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 import android.widget.ImageButton;
 
-import java.io.IOException;
-import java.util.HashMap;
-import java.util.Objects;
-
 public class SavedPostsActivity extends AppCompatActivity {
-
-    public static final String SAVES_FILE_NAME = "saves.json";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_saved_posts);
 
-        // Load previous saved posts
-        HashMap<String, PostData> loadedPosts = Util.load(getApplicationContext(), SAVES_FILE_NAME);
+        // Back Button
+        ImageButton exit = findViewById(R.id.backSaved);
+        exit.setOnClickListener(v -> back());
 
         System.out.println(loadedPosts.keySet().size());
 
         // Array of the 9 image buttons we can use lmao
-        ImageButton[] savedDraftButtons = {findViewById(R.id.imageButton1), findViewById(R.id.imageButton2),
+        ImageButton[] savedDraftButtons = {
+                findViewById(R.id.imageButton), findViewById(R.id.imageButton2),
                 findViewById(R.id.imageButton3), findViewById(R.id.imageButton4),
-                    findViewById(R.id.imageButton5), findViewById(R.id.imageButton6),
-                        findViewById(R.id.imageButton7),findViewById(R.id.imageButton8),
-                            findViewById(R.id.imageButton9)};
+                findViewById(R.id.imageButton5), findViewById(R.id.imageButton6),
+                findViewById(R.id.imageButton7),findViewById(R.id.imageButton8)};
 
         int pos = 0;
-        for(String key : loadedPosts.keySet()) {
-//            try {
-//                savedDraftButtons[pos].setImageBitmap(Util.getBitmapFromUri(loadedPosts.get(key).img, getContentResolver()));
-//            } catch (IOException e) {
-//                e.printStackTrace();
-//            }
-            pos++;
-            if(pos == 9) {
-                break;
-            }
+        for(String key : Global.data.keySet()) {
+            if (pos == 9) break;
+            PostData data = Global.data.get(key);
+            ImageButton button = savedDraftButtons[pos++];
+            button.setImageBitmap(data.img);
+            button.setOnClickListener(v -> clickPic());
         }
-        while(pos < 9) {
-            savedDraftButtons[pos].setVisibility(View.GONE);
-            pos++;
-        }
+    }
+
+    protected void clickPic() {
+
+    }
+
+    protected void back() {
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
     }
 }

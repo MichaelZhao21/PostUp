@@ -15,6 +15,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // Load data
+        Global.data = Util.load(getApplicationContext(), Global.SAVES_FILE_NAME);
+
         Button newButton = (Button) findViewById(R.id.NewButton);
         newButton.setOnClickListener(new View.OnClickListener() {
             @Override
