@@ -53,7 +53,7 @@ public class EditPostActivity extends AppCompatActivity {
     }
 
     protected void save() {
-        // GRACE WRITE STUFF HERE
+        // TODO: write data to save file
     }
 
     protected void openPhoto() {
