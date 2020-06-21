@@ -76,8 +76,6 @@ public class EditPostActivity extends AppCompatActivity {
         // Create object for this post
         JSONObject currSave = PostData.PostDataToJsonObject(new PostData(name, text, uri));
 
-        name = "IM A DUMMY THICC";
-
         // If the name already exists in another saved post, sucks lmfao
         if(loadedPosts.containsKey(name)) {
             System.out.println("That name already exists");
@@ -93,6 +91,10 @@ public class EditPostActivity extends AppCompatActivity {
             FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
             fs.write(savedPostsArray.toString().getBytes());
             fs.close();
+
+            Intent intent = new Intent(this, SavedPostsActivity.class);
+            startActivity(intent);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
