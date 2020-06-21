@@ -80,6 +80,13 @@ public class Util {
         return Base64.encodeToString(bytes, Base64.DEFAULT);
     }
 
+    public static String bitmapToSmallString(Bitmap bitmap) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+        bitmap.compress(Bitmap.CompressFormat.JPEG, 50, byteArrayOutputStream);
+        byte[] bytes = byteArrayOutputStream.toByteArray();
+        return Base64.encodeToString(bytes, Base64.DEFAULT);
+    }
+
     public static Bitmap stringToBitmap(String string) {
         try {
             byte[] bytes = Base64.decode(string, Base64.DEFAULT);
