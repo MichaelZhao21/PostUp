@@ -9,6 +9,7 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
+import android.util.JsonReader;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -16,7 +17,17 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+
+import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 
 public class EditPostActivity extends AppCompatActivity {
@@ -55,6 +66,73 @@ public class EditPostActivity extends AppCompatActivity {
 
     protected void save() {
         // TODO: write data to save file
+        Log.d("tag","message");
+        //File file = new File(getApplicationContext().getFilesDir(), "save.json");
+        JSONArray listsaves = new JSONArray();
+        /*try(FileReader file = new FileReader("save.json");) {
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(file);
+            listsaves = (JSONArray) obj;
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }*/
+        EditText editText = findViewById(R.id.textDisplay);
+        String text = editText.getText().toString();
+        JSONObject newsave = new JSONObject();
+        load();
+        try {
+            newsave.put("name:", name);
+            newsave.put("text:", text);
+            newsave.put("image:", uri);
+            listsaves.put(newsave);
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileWriter fileWriter = new FileWriter("save.json");
+            fileWriter.write(listsaves.toString());
+            fileWriter.close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        System.out.println(newsave);
+        /*for(int i = 0; i < listsaves.length(); i++) {
+            try {
+                System.out.println(listsaves.get(i).toString());
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }*/
+    }
+
+    protected void load() {
+        try {
+            FileReader file = new FileReader("save.json");
+            JSONParser parser = new JSONParser();
+            Object obj = parser.parse(file);
+            JSONArray saved = (JSONArray) obj;
+
+            for (int i = 0; i < saved.length(); i++) {
+                JSONObject entry = (JSONObject) saved.get(i);
+                String name = (String) entry.get("name");
+                String text = (String) entry.get("text");
+                String job = (String) entry.get("job");
+            }
+
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (ParseException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
     protected void openPhoto() {
