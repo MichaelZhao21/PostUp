@@ -1,6 +1,7 @@
 package xyz.michaelzhao.postup;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.DialogFragment;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -41,8 +42,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     protected void createPost() {
-        Intent intent = new Intent(this, EditPostActivity.class);
-        startActivity(intent);
+        DialogFragment addName = new NameDialog();
+        addName.show(getSupportFragmentManager(), "addName");
     }
 
     protected void newActivity(String option) {

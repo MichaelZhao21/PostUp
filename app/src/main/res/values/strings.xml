@@ -2,4 +2,7 @@
     <string name="app_name">Post Up!</string>
     <string name="facebook_app_id">307114710681776</string>
     <string name="image_load_error">Image loading failed!</string>
+    <string name="new_post">Create New Post</string>
+    <string name="enter_name">Enter Name</string>
+    <string name="submit">Submit</string>
 </resources>
