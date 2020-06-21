@@ -9,8 +9,6 @@ import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.ParcelFileDescriptor;
-import android.util.JsonReader;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,19 +18,21 @@ import android.widget.TextView;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileDescriptor;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
+import java.io.FileOutputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.nio.charset.StandardCharsets;
 
 public class EditPostActivity extends AppCompatActivity {
 
     public static final int CHOOSE_IMAGE = 1;
+    public static final String SAVES_FILE_NAME = "saves.json";
     public Uri uri;
     public String name;
 
@@ -65,72 +65,67 @@ public class EditPostActivity extends AppCompatActivity {
     }
 
     protected void save() {
-        // TODO: write data to save file
-        Log.d("tag","message");
-        //File file = new File(getApplicationContext().getFilesDir(), "save.json");
-        JSONArray listsaves = new JSONArray();
-        /*try(FileReader file = new FileReader("save.json");) {
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(file);
-            listsaves = (JSONArray) obj;
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }*/
+        // Get file
+        File file = new File(getApplicationContext().getFilesDir(), "save.json");
+
+        // Create json array of saved posts
+        JSONArray savedPostsArray = new JSONArray();
+
+        // Get text from the text box
         EditText editText = findViewById(R.id.textDisplay);
         String text = editText.getText().toString();
-        JSONObject newsave = new JSONObject();
+
+        // Create object for this post
+        JSONObject currSave = new JSONObject();
+
+        name = "IM A DUMMY THICC";
+        try {
+            // Put the strings into the object
+            currSave.put("name", name);
+            currSave.put("text", text);
+            currSave.put("image", uri.toString());
+
+            // Add the object to the array
+            savedPostsArray.put(currSave);
+
+            // Write to file
+            FileOutputStream fs = getApplicationContext().openFileOutput(SAVES_FILE_NAME, MODE_PRIVATE);
+            fs.write(savedPostsArray.toString().getBytes());
+            fs.close();
+        } catch (JSONException | IOException e) {
+            e.printStackTrace();
+        }
+
         load();
-        try {
-            newsave.put("name:", name);
-            newsave.put("text:", text);
-            newsave.put("image:", uri);
-            listsaves.put(newsave);
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
-        try {
-            FileWriter fileWriter = new FileWriter("save.json");
-            fileWriter.write(listsaves.toString());
-            fileWriter.close();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        System.out.println(newsave);
-        /*for(int i = 0; i < listsaves.length(); i++) {
-            try {
-                System.out.println(listsaves.get(i).toString());
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-        }*/
+
     }
 
     protected void load() {
         try {
-            FileReader file = new FileReader("save.json");
-            JSONParser parser = new JSONParser();
-            Object obj = parser.parse(file);
-            JSONArray saved = (JSONArray) obj;
+            // Get input file stream
+            FileInputStream fis = getApplicationContext().openFileInput(SAVES_FILE_NAME);
+            InputStreamReader inputStreamReader = new InputStreamReader(fis, StandardCharsets.UTF_8);
 
-            for (int i = 0; i < saved.length(); i++) {
-                JSONObject entry = (JSONObject) saved.get(i);
-                String name = (String) entry.get("name");
-                String text = (String) entry.get("text");
-                String job = (String) entry.get("job");
+            // Get stringbuilder and buffered reader
+            StringBuilder sb = new StringBuilder();
+            BufferedReader f = new BufferedReader(inputStreamReader);
+
+            // Read file to string
+            String line = f.readLine();
+            while (line != null) {
+                sb.append(line).append('\n');
+                line = f.readLine();
             }
 
-        } catch (FileNotFoundException e) {
-            e.printStackTrace();
-        } catch (ParseException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (JSONException e) {
+            JSONArray arr = new JSONArray(sb.toString());
+            JSONObject obj = arr.getJSONObject(0);
+            System.out.println(obj.toString());
+            System.out.println(obj.get("name").toString());
+            System.out.println(obj.get("text").toString());
+            System.out.println(Uri.parse(obj.get("image").toString()));
+
+
+        } catch (IOException | JSONException e) {
             e.printStackTrace();
         }
     }
