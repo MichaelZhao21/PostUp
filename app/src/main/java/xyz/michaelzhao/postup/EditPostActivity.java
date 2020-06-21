@@ -50,20 +50,10 @@ public class EditPostActivity extends AppCompatActivity {
         title.setText(name);
 
         ImageView imageView = findViewById(R.id.pictureDisplay);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                openPhoto();
-            }
-        });
+        imageView.setOnClickListener(v -> openPhoto());
 
         Button saveButton = findViewById(R.id.save);
-        saveButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                save();
-            }
-        });
+        saveButton.setOnClickListener(v -> save());
     }
 
     protected void save() {
@@ -132,7 +122,8 @@ public class EditPostActivity extends AppCompatActivity {
             JSONArray arr = new JSONArray(sb.toString());
             // Loop through the JSONArray and add to the map
             for(int i = 0; i < arr.length(); i++) {
-                postDataHashMap.put(arr.getJSONObject(i).get("name").toString(), PostData.JsonObjectToPostData(arr.getJSONObject(i)));
+                PostData data = PostData.JsonObjectToPostData(arr.getJSONObject(i));
+                postDataHashMap.put(data.name, data);
             }
 
         } catch (IOException | JSONException e) {
