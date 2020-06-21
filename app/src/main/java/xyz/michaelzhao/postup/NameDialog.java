@@ -32,10 +32,11 @@ public class NameDialog extends DialogFragment {
     protected void moveOn() {
         EditText editText = view.findViewById(R.id.addName);
         String name = editText.getText().toString();
-        if (!name.isEmpty()) {
-            Intent intent = new Intent(view.getContext(), EditPostActivity.class);
-            intent.putExtra("name", name);
-            startActivity(intent);
-        }
+        if (name.isEmpty())
+            return;
+
+        Intent intent = new Intent(view.getContext(), EditPostActivity.class);
+        intent.putExtra("name", name);
+        startActivity(intent);
     }
 }
