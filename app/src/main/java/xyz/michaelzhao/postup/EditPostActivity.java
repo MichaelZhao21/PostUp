@@ -86,6 +86,9 @@ public class EditPostActivity extends AppCompatActivity {
             fs.write(savedPostsArray.toString().getBytes());
             fs.close();
 
+            PostData data = PostData.JsonObjectToPostData(currSave);
+            Global.data.put(data.name, data);
+
             Intent intent = new Intent(this, SavedPostsActivity.class);
             startActivity(intent);
 
