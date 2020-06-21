@@ -61,7 +61,7 @@ public class EditPostActivity extends AppCompatActivity {
         HashMap<String, PostData> loadedPosts = Util.load(getApplicationContext(), SAVES_FILE_NAME);
 
         // Get file
-        File file = new File(getApplicationContext().getFilesDir(), "save.json");
+        File file = new File(getApplicationContext().getFilesDir(), SAVES_FILE_NAME);
 
         // Create json array of saved posts from HashMap
         JSONArray savedPostsArray = new JSONArray();
